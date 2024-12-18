@@ -6,7 +6,7 @@ products.json
 logs/
 
 # Ignore virtual environments
-venv/
+.venv/
 
 # Ignore compiled Python files
 *.pyc

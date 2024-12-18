@@ -1,0 +1,13 @@
+{
+  "default": {
+    "nodes": {
+      "default": "ALL"  # Catch-all node for unknown properties
+    }
+  },
+  "prios_g9_cct": {
+    "nodes": {
+      "light_control": ["switch_led", "bright_value", "temp_value"],
+      "feature_control": ["work_mode", "countdown", "scene_data", "do_not_disturb"]
+    }
+  }
+}

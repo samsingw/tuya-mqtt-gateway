@@ -9,11 +9,13 @@ class TuyaAPIClient:
 
     def send_command(self, device_id, command, params):
         """
-        Sends a command to the API server to control a Tuya device. 
+        Sends a command to the API server to control a Tuya device.
         :param device_id: The ID or name of the device.
         :param command: The DPS key or code (e.g., "switch_led", "bright_value").
         :param params: The value to set (e.g., "true", "false", 500).
         """
+        if not hasattr(self, "device_name_map"):
+                self.device_name_map = {}
         device_name = self.device_name_map.get(device_id, device_id)  # Fallback to device_id if no name
         url = f"{self.base_url}/set/{device_name}/{command}/{params}"
         logger.debug(f"Sending command to API: URL={url}")
@@ -24,6 +26,8 @@ class TuyaAPIClient:
         return response.json()
 
     def get_status(self, device_id):
+        if not hasattr(self, "device_name_map"):
+            self.device_name_map = {}
         device_name = self.device_name_map.get(device_id, device_id)  # Fallback to device_id if no name
         url = f"{self.base_url}/status/{device_name}"
         response = requests.get(url)
@@ -37,13 +41,20 @@ class TuyaAPIClient:
             raise
 
     def get_devices(self):
+        """Fetch device list from the API server and parse the response."""
         url = f"{self.base_url}/devices"
         response = requests.get(url)
         response.raise_for_status()
         try:
             devices = response.json()  # Parse the JSON response
             logger.debug(f"Devices response: {devices}")
-            self.device_name_map = {device["id"]: device["name"] for device in devices.values()}
+
+            # Maintain a mapping of device_id to device_name
+            self.device_name_map = {
+                device["id"]: device["name"]
+                for device in devices.values()
+                if "id" in device and "name" in device
+            }
             return devices
         except ValueError:
             logger.error("Failed to parse devices API response as JSON")
@@ -54,4 +65,6 @@ class TuyaAPIClient:
         url = f"{self.base_url}/device/{device_id}"
         response = requests.get(url)
         response.raise_for_status()
-        return response.json()
+        data = response.json()
+        logger.debug(f"Metadata for {device_id}: {data}")
+        return data

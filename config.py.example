@@ -1,0 +1,15 @@
+# config.py
+
+MQTT_BROKER = "localhosst"
+MQTT_PORT = 1883
+MQTT_USERNAME = "<username>"
+MQTT_PASSWORD = "<password>"
+
+API_SERVER = "http://localhost:8888"  # URL of the tinytuya API server
+
+MQTT_COMMAND_TOPIC_TEMPLATE = "homie/{device_id}/data/{property}/set"
+MQTT_STATUS_TOPIC_TEMPLATE = "homie/{device_id}/data/{property}"
+
+PRODUCT_CONFIG_FILE = "products.json"
+
+LOG_LEVEL = "INFO"

@@ -3,8 +3,8 @@ FROM python:3.9-slim
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
-    TZ=UTC
-
+    TZ=UTC \
+    PYTHONPATH=/app
 # Create application directory
 WORKDIR /app
 

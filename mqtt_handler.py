@@ -2,7 +2,9 @@ import logging
 from paho.mqtt.client import Client
 import json
 import os
-from config.config import MQTT_BROKER, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD, MQTT_STATUS_TOPIC_TEMPLATE, MQTT_COMMAND_TOPIC_TEMPLATE
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), "config"))
+from config import MQTT_BROKER, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD, MQTT_STATUS_TOPIC_TEMPLATE, MQTT_COMMAND_TOPIC_TEMPLATE
 
 logger = logging.getLogger(__name__)
 

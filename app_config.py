@@ -7,17 +7,6 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "config"))
 import config
 
 # Extract configuration values
-
-import sys
-import os
-
-# Add the config folder to the Python path dynamically
-sys.path.append(os.path.join(os.path.dirname(__file__), "config"))
-
-# Import the dynamically loaded config
-from config import config
-
-# Extract configuration values
 MQTT_BROKER = config.MQTT_BROKER
 MQTT_PORT = config.MQTT_PORT
 MQTT_USERNAME = config.MQTT_USERNAME

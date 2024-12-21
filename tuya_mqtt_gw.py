@@ -1,7 +1,7 @@
 import logging
 import threading
 import time
-from app_config import MQTT_BROKER, MQTT_PORT, LOG_LEVEL
+from app_config import MQTT_BROKER, MQTT_PORT, LOG_LEVEL, API_SERVER, PRODUCT_CONFIG_FILE
 from mqtt_handler import MQTTHandler, setup_mqtt
 from api_client import TuyaAPIClient
 

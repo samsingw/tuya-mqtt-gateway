@@ -1,7 +1,6 @@
 # Ignore configuration files
-config.py
-products.json
-config/
+config/config.py
+config/products.json
 # Ignore logs
 logs/
 

@@ -1,7 +1,8 @@
 import logging
 from paho.mqtt.client import Client
 import json
-from config import MQTT_BROKER, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD, MQTT_STATUS_TOPIC_TEMPLATE, MQTT_COMMAND_TOPIC_TEMPLATE
+import os
+from config.config import MQTT_BROKER, MQTT_PORT, MQTT_USERNAME, MQTT_PASSWORD, MQTT_STATUS_TOPIC_TEMPLATE, MQTT_COMMAND_TOPIC_TEMPLATE
 
 logger = logging.getLogger(__name__)
 
@@ -13,8 +14,10 @@ class MQTTHandler:
 
     def _load_product_config(self, product_config_file):
         """Load product-specific configuration from a JSON file."""
+        cwd = os.path.dirname(__file__)
+        p_conf=os.path.join(cwd,product_config_file)
         try:
-            with open(product_config_file, "r") as f:
+            with open(p_conf, "r") as f:
                 product_config = json.load(f)
                 logger.info("Product configuration loaded successfully.")
                 return product_config

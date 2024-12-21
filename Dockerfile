@@ -9,7 +9,7 @@ ENV PYTHONUNBUFFERED=1 \
 WORKDIR /app
 
 # Copy application code
-COPY tuya_mqtt_gw.py mqtt_handler.py api_client.py requirements.txt /app/
+COPY tuya_mqtt_gw.py mqtt_handler.py api_client.py requirements.txt app_config.py /app/
 
 # Install dependencies
 RUN pip install --no-cache-dir --upgrade pip \

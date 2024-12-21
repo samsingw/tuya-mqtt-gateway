@@ -1,10 +1,10 @@
 import logging
 import threading
 import time
-from app_config import MQTT_BROKER, MQTT_PORT, LOG_LEVEL, API_SERVER, PRODUCT_CONFIG_FILE
+from app_config import LOG_LEVEL, API_SERVER, PRODUCT_CONFIG_FILE, MQTT_BROKER, MQTT_PORT
 from mqtt_handler import MQTTHandler, setup_mqtt
 from api_client import TuyaAPIClient
-
+print(f"MQTT Broker: {MQTT_BROKER}, Port: {MQTT_PORT}")
 
 # Configure logging
 logging.basicConfig(
